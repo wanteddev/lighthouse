@@ -9,7 +9,7 @@ jobs:
     - name: Run audit on https://github.com/
       uses: ./
       with:
-        url: 'https://github.com/'
+        url: 'https://www.wanted.co.kr'
     - uses: actions/upload-artifact@master
       with:
         name: report
