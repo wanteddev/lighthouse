@@ -46,7 +46,7 @@ createReport() {
   printf "    %s\n" "$OUTPUT_PATH.report.html"
   printf "    %s\n" "$OUTPUT_PATH.report.json"
 }
-
+echo $INPUT_URLS;
 if [ "$INPUT_MOBILE" == "true" ]; then
   createReport mobile
 fi

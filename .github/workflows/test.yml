@@ -10,6 +10,9 @@ jobs:
       uses: ./
       with:
         url: 'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
+        urls: |
+          'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
+          'https://2'
         desktop: 'false'
         mobile: 'true'
     
@@ -17,6 +20,9 @@ jobs:
       uses: ./
       with:
         url: 'https://www.wanted.co.kr/wd/32385'
+        urls: |
+          'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
+          'https://2'
         desktop: 'true'
         mobile: 'true'
 
