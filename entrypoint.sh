@@ -49,6 +49,6 @@ createReport() {
 
 
 createReport desktop
-createReport mobile
+timeout 5 createReport mobile
 
 exit 0
