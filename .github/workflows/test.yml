@@ -6,13 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Create Report Wanted 
+    - name: Create Report Wanted Job List
       uses: ./
       with:
-        urls: |
-          https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul
-          https://www.wanted.co.kr/wd/32385
+        url: 'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
         desktop: 'false'
+        mobile: 'true'
+    
+    - name: Create Report Wanted Job Detail
+      uses: ./
+      with:
+        url: 'https://www.wanted.co.kr/wd/32385'
+        desktop: 'true'
         mobile: 'true'
 
     - uses: actions/upload-artifact@master
