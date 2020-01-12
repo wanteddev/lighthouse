@@ -22,7 +22,7 @@ createReport() {
   printf "* Beginning audit of %s ...\n\n" "$REPORT_URL"
 
   # Run Lighthouse!
-  lighthouse --port=9222 --max-wait-for-load=65000 --chrome-flags="--headless --disable-gpu --no-sandbox --no-zygote" --emulated-form-factor "${DEVICE}" --output "html" --output "json" --output-path "${OUTPUT_PATH}" "${REPORT_URL}"
+  lighthouse --port=9222 --max-wait-for-load=100000 --chrome-flags="--headless --disable-gpu --no-sandbox --no-zygote" --emulated-form-factor "${DEVICE}" --output "html" --output "json" --output-path "${OUTPUT_PATH}" "${REPORT_URL}"
 
   # Parse individual scores from JSON output.
   # Unorthodox jq syntax because of dashes -- https://github.com/stedolan/jq/issues/38
@@ -48,7 +48,7 @@ createReport() {
 }
 
 
-# createReport mobile
+createReport mobile
 createReport desktop
 
 exit 0
