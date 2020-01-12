@@ -48,8 +48,6 @@ createReport() {
 }
 
 for input in "${INPUT_URLS[@]}"; do
-  echo $input;
-
   if [ "$INPUT_MOBILE" == "true" ]; then
     createReport mobile $input
   fi
