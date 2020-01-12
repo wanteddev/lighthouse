@@ -9,18 +9,14 @@ jobs:
     - name: Create Report Wanted Job List
       uses: ./
       with:
-        urls: |
-          https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul
-          https://www.wanted.co.kr/events
+        url: https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul
         desktop: 'false'
         mobile: 'true'
     
     - name: Create Report Wanted Job Detail
       uses: ./
       with:
-        urls: |
-          https://www.wanted.co.kr/wd/32385
-          https://www.wanted.co.kr
+        url: 'https://www.wanted.co.kr/wd/32385'
         desktop: 'true'
         mobile: 'true'
 

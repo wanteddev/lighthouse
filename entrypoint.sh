@@ -9,7 +9,7 @@ createReport() {
   DEVICE=$1
 
   # simply check the provided live URL.
-  REPORT_URL=$2
+  REPORT_URL=$INPUT_URL
 
   # Prepare directory for audit results and sanitize URL to a valid and unique filename.
   OUTPUT_FOLDER="report/${DEVICE}"
@@ -47,13 +47,11 @@ createReport() {
   printf "    %s\n" "$OUTPUT_PATH.report.json"
 }
 
-for input in "${INPUT_URLS[@]}"; do
-  if [ "$INPUT_MOBILE" == "true" ]; then
-    createReport mobile $input
-  fi
-  if [ "$INPUT_DESKTOP" == "true" ]; then
-    createReport desktop $input
-  fi
-done
+if [ "$INPUT_MOBILE" == "true" ]; then
+  createReport mobile
+fi
+if [ "$INPUT_DESKTOP" == "true" ]; then
+  createReport desktop
+fi
 
 exit 0
