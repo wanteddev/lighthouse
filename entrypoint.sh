@@ -48,7 +48,7 @@ createReport() {
 }
 
 
-createReport mobile
+# createReport mobile
 createReport desktop
 
 exit 0
