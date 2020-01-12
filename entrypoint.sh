@@ -9,7 +9,7 @@ PULL_REQUEST_NUMBER=$(jq .number "$GITHUB_EVENT_PATH")
 DEVICE=$INPUT_DEVICE
 
 # simply check the provided live URL.
-REPORT_URL="${DEVICE}_${INPUT_URL}"
+REPORT_URL=${INPUT_URL}
 
 # Prepare directory for audit results and sanitize URL to a valid and unique filename.
 OUTPUT_FOLDER="report"
