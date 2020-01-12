@@ -49,6 +49,6 @@ createReport() {
 
 
 createReport desktop
-& createReport mobile
+sleep 10 & createReport mobile
 
 exit 0
