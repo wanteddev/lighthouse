@@ -16,4 +16,5 @@ ARG CACHEBUST=1
 RUN npm install -g lighthouse
 
 ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["chmod +x entrypoint.sh", "/entrypoint.sh"]
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
