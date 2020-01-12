@@ -13,7 +13,7 @@ LABEL maintainer="Jake Jarvis <jake@jarv.is>"
 # Download latest Lighthouse build from npm
 # Cache bust to ensure latest version when building the image
 ARG CACHEBUST=1
-RUN npx install lighthouse
+RUN npm install -g lighthouse
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
