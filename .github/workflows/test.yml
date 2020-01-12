@@ -1,0 +1,16 @@
+name: Test Audit
+on: [push]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run audit on https://github.com/
+      uses: ./
+      with:
+        url: 'https://github.com/'
+    - uses: actions/upload-artifact@master
+      with:
+        name: report
+        path: './report'
