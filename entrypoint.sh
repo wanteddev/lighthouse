@@ -46,12 +46,16 @@ createReport() {
   printf "    %s\n" "$OUTPUT_PATH.report.html"
   printf "    %s\n" "$OUTPUT_PATH.report.json"
 }
-echo $INPUT_URLS;
-if [ "$INPUT_MOBILE" == "true" ]; then
-  createReport mobile
-fi
-if [ "$INPUT_DESKTOP" == "true" ]; then
-  createReport desktop
-fi
 
+for input in "${INPUT_URLS[@]}"; do
+  echo $input;
+
+done
+
+  if [ "$INPUT_MOBILE" == "true" ]; then
+    createReport mobile
+  fi
+  if [ "$INPUT_DESKTOP" == "true" ]; then
+    createReport desktop
+  fi
 exit 0
