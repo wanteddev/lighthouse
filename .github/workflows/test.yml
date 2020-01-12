@@ -6,11 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Run audit on https://www.wanted.co.kr/events
+    - name: Create Report Wanted Job List
       uses: ./
       with:
-        url: 'https://www.wanted.co.kr/events'
+        url: 'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
+        desktop: false
+        mobile: true
+    
+    - name: Create Report Wanted Job Detail
+      uses: wanteddev/lighthouse@master
+      with:
+        url: 'https://www.wanted.co.kr/wd/32385'
+        desktop: true
+        mobile: true
+
     - uses: actions/upload-artifact@master
       with:
         name: report
         path: './report'
+
+        lighthouse https://www.wanted.co.kr/events --port=9222 --max-wait-load=1000000 --chrome-flags="--headless --disable-gpu --no-sandbox --no-zygote" --output "html" --output "json"

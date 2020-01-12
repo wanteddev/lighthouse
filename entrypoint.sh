@@ -47,8 +47,7 @@ createReport() {
   printf "    %s\n" "$OUTPUT_PATH.report.json"
 }
 
-
-createReport mobile
-createReport desktop
+if($INPUT_MOBILE == "true") then createReport MOBILE
+if($INPUT_DESKTOP == "true") then createReport desktop
 
 exit 0
