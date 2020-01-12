@@ -48,7 +48,7 @@ createReport() {
 }
 
 
+createReport mobile
 createReport desktop
-sleep 10 & createReport mobile
 
 exit 0
