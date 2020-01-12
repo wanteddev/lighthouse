@@ -10,15 +10,15 @@ jobs:
       uses: ./
       with:
         url: 'https://www.wanted.co.kr/wdlist?country=kr&job_sort=job.latest_order&years=-1&locations=seoul'
-        desktop: false
-        mobile: true
+        desktop: 'false'
+        mobile: 'true'
     
     - name: Create Report Wanted Job Detail
-      uses: wanteddev/lighthouse@master
+      uses: ./
       with:
         url: 'https://www.wanted.co.kr/wd/32385'
-        desktop: true
-        mobile: true
+        desktop: 'true'
+        mobile: 'true'
 
     - uses: actions/upload-artifact@master
       with:
