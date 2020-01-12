@@ -1,12 +1,12 @@
 #!/bin/bash
 
 set -e
-createReport(SELECT_DEVICE) {
+createReport() {
   # Check if we're being triggered by a pull request.
   PULL_REQUEST_NUMBER=$(jq .number "$GITHUB_EVENT_PATH")
 
   # check platform
-  DEVICE=$SELECT_DEVICE
+  DEVICE=$1
 
   # simply check the provided live URL.
   REPORT_URL=$INPUT_URL
@@ -47,7 +47,8 @@ createReport(SELECT_DEVICE) {
   printf "    %s\n" "$OUTPUT_PATH.report.json"
 }
 
-createReport('desktop');
-createReport('mobile');
+
+createReport desktop
+createReport mobile
 
 exit 0
