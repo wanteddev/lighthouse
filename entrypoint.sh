@@ -48,7 +48,7 @@ createReport() {
 }
 
 if [ "$INPUT_MOBILE" == "true" ]; then
-  createReport MOBILE
+  createReport mobile
 fi
 if [ "$INPUT_DESKTOP" == "true" ]; then
   createReport desktop
