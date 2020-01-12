@@ -15,6 +15,9 @@ LABEL maintainer="Jake Jarvis <jake@jarv.is>"
 ARG CACHEBUST=1
 RUN npm install -g lighthouse
 
+# Disable Lighthouse error reporting to prevent prompt
+ENV CI=true
+
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
