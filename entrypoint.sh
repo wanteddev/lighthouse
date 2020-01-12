@@ -6,13 +6,13 @@ set -e
 PULL_REQUEST_NUMBER=$(jq .number "$GITHUB_EVENT_PATH")
 
 # check platform
-DEVICE=$INPUT_DEVICE
+DEVICE='$INPUT_DEVICE'
 
 # simply check the provided live URL.
 REPORT_URL=${INPUT_URL}
 
 # Prepare directory for audit results and sanitize URL to a valid and unique filename.
-OUTPUT_FOLDER="report"
+OUTPUT_FOLDER="report/${DEVICE}"
 # shellcheck disable=SC2001
 OUTPUT_FILENAME=$(echo "$REPORT_URL" | sed 's/[^a-zA-Z0-9]/_/g')
 OUTPUT_PATH="$GITHUB_WORKSPACE/$OUTPUT_FOLDER/$OUTPUT_FILENAME"
