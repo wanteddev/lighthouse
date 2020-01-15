@@ -1,2 +1,2 @@
 # lighthouse
-check for site performance
+check site performance on Github Actions
