@@ -1,23 +1,21 @@
 # Lighthouse 검사 챗봇
 
 ## 개요
-[Lighthouse](https://developers.google.com/web/tools/lighthouse)
-
+[Lighthouse](https://developers.google.com/web/tools/lighthouse)를 안정적으로 테스트하고 과거 데이터를 비교하기 위한 챗봇입니다
+  
 ## 기능 목록
-
-* __즉시 검사__ - `/lighthouse {url}` 명령어로 빠르게 검사를 실행하거나, `/lighthouse` 명령어로 검사 설정 (검사 카테거리) 수정해서 검사할 수 있습니다
-* __검사 스케쥴링__ - `/lighthouse jobs` 명령어로 검사 스케쥴링 기능이 제공합니다
-* __ HTML 리포트 템플릿__ - HTML 템플릿을 통해 Lighthouse 검사에 대해 상세한 보고서를 받을 수 있습니다. `src/static/reportTemplate.html`에서 템플릿 파일을 마음대로 커스터마이징이 가능합니다!
-* __트렌드 차트 시각화__ - `/lighthouse stats {url}` 명령어로 URL별로 카테거리의 결과를 차트로 확인할 수 있습니다. (`src/static/statsTemplate.html`에서 커스텀 가능!)
+  
+* __즉시 검사__ - `/lighthouse {url}` 명령어로 빠르게 검사를 실행하거나, `/lighthouse` 명령어로 검사 설정 (검사 카테거리) 수정해서 검사할 수 있습니다  
+* __검사 스케쥴링__ - `/lighthouse jobs` 명령어로 검사 스케쥴링 기능이 제공합니다  
+* __HTML 리포트 템플릿__ - HTML 템플릿을 통해 Lighthouse 검사에 대해 상세한 보고서를 받을 수 있습니다. `src/static/reportTemplate.html`에서 템플릿 파일을 마음대로 커스터마이징이 가능합니다!  
+* __트렌드 차트 시각화__ - `/lighthouse stats {url}` 명령어로 URL별로 카테거리의 결과를 차트로 확인할 수 있습니다. (`src/static/statsTemplate.html`에서 커스텀 가능!)  
 
 ## 개발하기
 ### 준비사항
-
-* **Node.js v10+**
-
+  
+* **Node.js v10+**  
 * **설정  필요한 환경변수**  
-Regardless of the method you are deploying with, this application relies on a variety of environment variables to be able to function properly. Either use the `export` method, or inject your docker container with env variables depending on what method you are deploying this chatbot with.
-
+  
 |       변수명       |           예시 값           |         설명         |
 | ----------------: | :------------------------- | :---------------------------------- |
 |              PORT | 3001                       | 챗봇이 이용하는 포트번호                 |
