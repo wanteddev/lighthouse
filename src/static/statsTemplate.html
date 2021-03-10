@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Lighthouse Performance Graph</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+    body {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        margin: 0;
+        background-color: #212121;
+        color: #fff;
+      }
+
+      main {
+          padding: 10px;
+      }
+
+      canvas {
+          margin-bottom: 20px;
+          max-height: 450px;
+          min-height: 150px;
+      }
+
+      #header {
+        background: #000;
+        color: #fff;
+        height: 32px;
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* TODO: use BEM */
+      #header > div {
+          display: flex;
+      }
+
+      #title {
+        width: -webkit-fill-available;
+    }
+    
+    span {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block;
+      max-width: calc(100% - 70px);
+      font-weight: 100;
+      font-size: 16px;
+    }
+
+    #audit-url {
+        color: #2196F3;
+        text-decoration: none;
+    }
+
+    .logo {
+      height: 24px;
+      width: auto;
+      margin-left: 10px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+<body>
+    <noscript>Lighthouse report requires JavaScript. Please enable.</noscript>
+    <!-- header -->
+    <div id="header">
+        <img class="logo" height="50" width="auto" src="/img/lighthouse-logo.png"/>
+        <div id="title">
+            <span>Audit Trends for <a id="audit-url"></a></span>
+        </div>
+    </div>
+    <main>
+        <!-- charts generated here -->
+    </main>
+  <script>window.__LIGHTHOUSE_JSON__ = %%LIGHTHOUSE_JSON%%;</script>
+  <script>
+    function __initGraphs__() {
+      Chart.defaults.global.defaultFontColor = '#9E9E9E';
+      Chart.defaults.global.defaultFontFamily = 'Roboto, Helvetica, Arial, sans-serif';
+
+      const anchor = document.querySelector('#audit-url');
+      anchor.innerHTML = window.__LIGHTHOUSE_JSON__.url;
+      anchor.setAttribute('href', window.__LIGHTHOUSE_JSON__.url);
+
+      generateChart('performance', 'Performance', window.__LIGHTHOUSE_JSON__.performance);
+
+      generateChart('accessibility', 'Accessibility', window.__LIGHTHOUSE_JSON__.accessibility);
+
+      generateChart('best-practices', 'Best Practices', window.__LIGHTHOUSE_JSON__['best-practices']);
+
+      generateChart('pwa', 'PWA', window.__LIGHTHOUSE_JSON__.pwa);
+
+      generateChart('seo', 'SEO', window.__LIGHTHOUSE_JSON__.seo);
+    }
+
+    function generateChart(id, title, metric) {
+      // Only draw field if it has at least 2 data points
+      if (metric && metric.length < 2) return;
+      const container = document.querySelector('main');
+      const ctx = document.createElement('canvas');
+      const times = [];
+      const values = [];
+      let backgroundColor = 'red';
+      let borderColor = 'blue';
+
+      ctx.id = id
+      ctx.style.width = '100%';
+      ctx.style.height = '400px';
+
+      container.appendChild(ctx);
+
+      for (let item of metric) {
+          times.push(item.time);
+          values.push(item.value);
+      }
+
+      switch(id) {
+        case 'performance':
+          backgroundColor = 'rgba(156, 39, 176, 0.25)';
+          borderColor = 'rgba(156, 39, 176, 0.95)';
+          break;
+        case 'accessibility':
+          backgroundColor = 'rgba(66, 165, 245, 0.25)';
+          borderColor = 'rgba(66, 165, 245, 0.95)';
+          break;
+        case 'best-practices':
+          backgroundColor = 'rgba(255, 167, 38, 0.25)';
+          borderColor = 'rgba(255, 167, 38, 0.95)';
+          break;
+        case 'pwa':
+          backgroundColor = 'rgba(102, 187, 106, 0.25)';
+          borderColor = 'rgba(102, 187, 106, 0.95)';
+          break;
+        case 'seo':
+          backgroundColor = 'rgba(233, 30, 99, 0.25)';
+          borderColor = 'rgba(233, 30, 99, 0.95)';
+          break;
+      }
+      const options = {
+        type: 'line',
+        data: {
+          labels: times,
+          datasets: [{
+            backgroundColor,
+            borderColor,
+            fill: 'origin',
+            data: values,
+          }]
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: title,
+            fontSize: 18,
+            fontWeight: 100,
+            fontColor: '#fff',
+          },
+          legend: {
+            display: false,
+          },
+          scales: {
+            yAxes: [{
+              display: true,
+              ticks: {
+                max: 100,
+                min: 0,
+                stepSize: 5,
+                beginAtZero: true 
+              }
+            }],
+            x: {
+              type: 'time',
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Date'
+              }
+            },
+            y: {
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Value'
+              },
+            },
+          }
+        }
+      }
+
+      new Chart(ctx, options);
+    }
+
+    window.addEventListener('DOMContentLoaded', __initGraphs__);
+  </script>
+</body>
+</html>

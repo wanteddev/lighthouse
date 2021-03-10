@@ -1,0 +1,9 @@
+module.exports = {
+    PORT: 'PORT',
+    TOKEN: 'TOKEN',
+    MONGO_USERNAME: 'MONGO_USERNAME',
+    MONGO_PASSWORD: 'MONGO_PASSWORD',
+    MONGO_SERVER: 'MONGO_SERVER',
+    CHATBOT_SERVER: 'CHATBOT_SERVER',
+    API_ENDPOINT: 'https://slack.com/api',
+};

@@ -1,23 +1,21 @@
-# Base image built from Dockerfile.base (Chrome Stable + Node LTS)
-FROM jakejarvis/chrome-headless:latest
+FROM node:15.9.0-slim
 
-LABEL "com.github.actions.name"="Lighthouse Audit"
-LABEL "com.github.actions.description"="Run tests on a webpage via Google's Lighthouse tool"
+RUN  apt-get update \
+     # Install latest chrome dev package, which installs the necessary libs to
+     # make the bundled version of Chromium that Puppeteer installs work.
+     && apt-get install -y gnupg2 \
+     && apt-get install -y wget \
+     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+     && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+     && apt-get update \
+     && apt-get install -y google-chrome-unstable \
+     && rm -rf /var/lib/apt/lists/* \
+     && wget --quiet https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O /usr/sbin/wait-for-it.sh \
+     && chmod +x /usr/sbin/wait-for-it.sh
 
+COPY . /home/app
+WORKDIR /home/app
 
-LABEL version="0.0.1"
-LABEL repository="https://github.com/jakejarvis/lighthouse-action"
-LABEL homepage="https://jarv.is/"
-LABEL maintainer="Jake Jarvis <jake@jarv.is>"
-
-# Download latest Lighthouse build from npm
-# Cache bust to ensure latest version when building the image
-ARG CACHEBUST=1
-RUN npm install -g lighthouse
-
-# Disable Lighthouse error reporting to prevent prompt
-ENV CI=true
-
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+RUN npm install
+RUN npm install -g pm2
+CMD [ "npm", "start" ]

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mongo:
+    env_file: .env
+    networks:
+      - app
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=lighthouse
+  lighthouse-bot:
+    build: .
+    environment:
+      - PORT=3001
+      - WEBSOCKET_URL=${WEBSOCKET_URL}
+      - TOKEN=${TOKEN}
+      - MONGO_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_SERVER=${MONGO_SERVER}
+      - CHATBOT_SERVER=${CHATBOT_SERVER}
+      - TZ=Asia/Seoul
+    networks:
+      - app
+    env_file: .env
+    depends_on:
+      - mongo
+    ports:
+      - "3001:3001"
+
+volumes:
+  my-db:
+
+networks:
+  app:
