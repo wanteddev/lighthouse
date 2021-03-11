@@ -9,7 +9,7 @@ module.exports = {
         watch: process.env.NODE_ENV !== 'production' ? path.resolve(__dirname) : false,
         node_args: ['--experimental-worker'],
         max_memory_restart: '1G',
-        env_development: {
+        env: {
             PORT: 3001,
             TOKEN: 'xoxb-393798891191-dsadasdas-xxxxxxxxxxxxx',
             MONGO_USERNAME: 'root',
