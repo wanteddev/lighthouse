@@ -30,7 +30,7 @@ Regardless of the method you are deploying with, this application relies on a va
 
 
 ### Developing with Docker
-**0. Build local Lighthouse bot image** (optional)
+**0. Build local Lighthouse bot image**
 ```
 docker build -t wanteddev/lighthouse-bot .
 ```
