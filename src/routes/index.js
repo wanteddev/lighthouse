@@ -19,7 +19,15 @@ router.post('/lighthouse', async function(req, res) {
         trigger_id,
     } = req_data;
 
-    const req_options = text.split(' ');
+    let retext;
+    const onlyUrl = text.match(/(https?:\/\/[^ ]*)\b/);
+    if (onlyUrl) {
+        retext = onlyUrl[1];
+    } else { 
+        retext = text;
+    }
+
+    const req_options = retext.split(' ');
     const url_pattern = /^https?:\/\//;
     switch(req_options[0]) {
         case 'help':
