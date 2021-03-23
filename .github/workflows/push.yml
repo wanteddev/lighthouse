@@ -9,10 +9,6 @@ jobs:
     name: Build Lighthouse Image
     runs-on: ubuntu-18.04
 
-    strategy:
-      matrix:
-        node-version: [15.x]
-
     steps:
       - uses: actions/checkout@v2
         with:
