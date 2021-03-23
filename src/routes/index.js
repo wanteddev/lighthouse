@@ -199,8 +199,8 @@ router.post('/receive_submission', async function(req, res) {
     const {channel, is_schedule} = JSON.parse(res_data.view.private_metadata);
 
     let submission = {
-        throttling: true,
-        performance: true,
+        throttling: false,
+        performance: false,
         seo: false,
         pwa: false,
         'best-practices': false,
