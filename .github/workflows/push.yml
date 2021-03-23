@@ -30,3 +30,8 @@ jobs:
 
       - name: Push image
         run: docker push ghcr.io/wanteddev/lighthouse:${{github.event.release.tag_name}}
+
+      - name: Update latest image (to be used in caching)
+        run: |
+          docker tag ghcr.io/wanteddev/lighthouse:${{github.event.release.tag_name}} ghcr.io/wanteddev/lighthouse:latest
+          docker push ghcr.io/wanteddev/lighthouse:latest

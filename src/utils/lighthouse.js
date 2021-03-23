@@ -41,34 +41,28 @@ async function launchPuppeteer(url, options) {
 
         // Lighthouse will open URL. Puppeteer observes `targetchanged` and sets up network conditions.
         // Possible race condition.
-        let flags = {
+        let opts = {
             port: (new URL(browser.wsEndpoint())).port,
             output: 'json',
-            logLevel: 'error',
+            onlyCategories: [],
+            screenEmulation: {
+                disabled: true,
+            },
         };
 
-        let opts = {
-            settings: {
-                onlyCategories: [],
-                screenEmulation: {
-                    disabled: true,
-                },
-            }
-        }
-
-        if (options.performance) opts.settings.onlyCategories.push('performance');
-        if (options.accessibility) opts.settings.onlyCategories.push('accessibility');
-        if (options['best-practices']) opts.settings.onlyCategories.push('best-practices');
-        if (options.pwa) opts.settings.onlyCategories.push('pwa');
-        if (options.seo) opts.settings.onlyCategories.push('seo');
+        if (options.performance) opts.onlyCategories.push('performance');
+        if (options.accessibility) opts.onlyCategories.push('accessibility');
+        if (options['best-practices']) opts.onlyCategories.push('best-practices');
+        if (options.pwa) opts.onlyCategories.push('pwa');
+        if (options.seo) opts.onlyCategories.push('seo');
         
         // as throttling is enabled by default in lighthouse, disable it if explicitly unchecked
         if (options.throttling === false) {
             // Values referenced in
             // https://github.com/GoogleChrome/lighthouse/blob/master/lighthouse-core/config/constants.js
-            opts.settings.throttlingMethod = 'provided';
-            opts.settings.emulatedUserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse';
-            opts.settings.throttling = {
+            opts.throttlingMethod = 'provided';
+            opts.emulatedUserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse';
+            opts.throttling = {
                 rttMs: 40,
                 throughputKbps: 10 * 1024,
                 cpuSlowdownMultiplier: 1,
@@ -76,7 +70,7 @@ async function launchPuppeteer(url, options) {
                 downloadThroughputKbps: 0,
                 uploadThroughputKbps: 0,
             };
-            opts.settings.screenEmulation = {
+            opts.screenEmulation = {
                 mobile: false,
                 width: 1350,
                 height: 940,
@@ -85,7 +79,7 @@ async function launchPuppeteer(url, options) {
             }
         }
 
-        const {lhr} = await lighthouse(url, flags, opts);
+        const {lhr} = await lighthouse(url, opts);
         // Return response back to main thread
         parentPort.postMessage(lhr);
 
