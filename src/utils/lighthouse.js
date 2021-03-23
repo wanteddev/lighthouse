@@ -57,7 +57,8 @@ async function launchPuppeteer(url, options) {
         if (options.seo) opts.onlyCategories.push('seo');
         
         // as throttling is enabled by default in lighthouse, disable it if explicitly unchecked
-        if (options.throttling === false) {
+        console.log(options.throttling)
+        if (options.throttling === false || options.throttling === 'false') {
             // Values referenced in
             // https://github.com/GoogleChrome/lighthouse/blob/master/lighthouse-core/config/constants.js
             opts.throttlingMethod = 'provided';
