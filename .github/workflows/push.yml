@@ -26,11 +26,7 @@ jobs:
           password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Build image
-        run: |
-          DOCKER_BUILDKIT=1 docker build -t ghcr.io/wanteddev/lighthouse:${{github.event.release.tag_name}}
-          --build-arg BUILDKIT_INLINE_CACHE=1
-          --cache-from ghcr.io/wanteddev/lighthouse:latest
-          .
+        run: DOCKER_BUILDKIT=1 docker build -t ghcr.io/wanteddev/lighthouse:${{github.event.release.tag_name}} --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ghcr.io/wanteddev/lighthouse:latest .
 
       - name: Push image
         run: docker push ghcr.io/wanteddev/lighthouse:${{github.event.release.tag_name}}
