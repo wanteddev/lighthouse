@@ -18,4 +18,4 @@ WORKDIR /home/app
 
 RUN npm install
 RUN npm install -g pm2
-CMD [ "npm", "start" ]
+CMD [ "node", "src/index.js" ]
