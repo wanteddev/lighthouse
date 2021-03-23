@@ -64,6 +64,8 @@ async function launchPuppeteer(url, options) {
         
         // as throttling is enabled by default in lighthouse, disable it if explicitly unchecked
         if (options.throttling === false) {
+            // Values referenced in
+            // https://github.com/GoogleChrome/lighthouse/blob/master/lighthouse-core/config/constants.js
             opts.settings.throttlingMethod = 'provided';
             opts.settings.emulatedUserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse';
             opts.settings.throttling = {
