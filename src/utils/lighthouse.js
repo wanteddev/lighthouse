@@ -70,6 +70,7 @@ async function launchPuppeteer(url, options) {
                 downloadThroughputKbps: 0,
                 uploadThroughputKbps: 0,
             };
+            opts.formFactor = 'desktop'
             opts.screenEmulation = {
                 mobile: false,
                 width: 1350,
