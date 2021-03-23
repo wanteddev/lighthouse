@@ -13,7 +13,7 @@ Bringing all the benefits of running your tests in a stable environment without 
 ## Development
 ### Pre-requisites & Notes
 
-* **Node.js v10+**
+* **Node.js v12+**
 
 Regardless of the method you are deploying with, this application relies on a variety of environment variables to be able to function properly. Either use the `export` method, or inject your docker container with env variables depending on what method you are deploying this chatbot with.
 
@@ -29,7 +29,7 @@ Regardless of the method you are deploying with, this application relies on a va
 
 
 ### Developing with Docker
-**0. Build local Lighthouse bot image** (optional)
+**0. Build local Lighthouse bot image**
 ```
 docker build -t wanteddev/lighthouse-bot .
 ```
@@ -127,3 +127,6 @@ In order to post messages, this chatbot requires the following 3 permissions:
 - [x] Investigate the possibility of using workers to run audits so that multiple audits can run simultaneously
 - [x] Add a configurable number of past audits to be fetched from `stats` command
   - e.g. `/lighthouse stats https://google.com limit 15` 
+
+## Blog
+ - [로컬에서 lighthouse 테스트 하는 방법 (한국어)](https://medium.com/wantedjobs/wanteddev-lighthouse-%EC%89%AC%EC%9A%B4-%EC%82%AC%EC%9A%A9%EB%B2%95-feat-pm2-mongo-db-cc07d9d3b520)
