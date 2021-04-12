@@ -4,6 +4,8 @@
 This project creates a containerized auditing environment for Google's [Lighthouse](https://developers.google.com/web/tools/lighthouse) tool.
 Bringing all the benefits of running your tests in a stable environment without the overhead of updating CI/CD pipelines and code
 
+![](/readme.png)
+
 ## Features
 * __Ad-hoc Auditing__ - Quickly run an audit of a website with the `/lighthouse {url}` command, or simply type `/lighthouse` to launch a dialog with all available options
 * __Job Scheduling__ - With the `/lighthouse jobs` command, you can schedule an auditing job to be run whenever necessary
@@ -113,7 +115,7 @@ In order to post messages, this chatbot requires the following 3 permissions:
   * Run the command below to install dependencies needed to launch Puppeteer from your host
 
   ```
-  sudo apt install -y gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+  sudo apt install -y gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget libgbm-dev
   ```
 
 ### Current Tasks
