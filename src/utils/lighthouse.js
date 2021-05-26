@@ -27,18 +27,19 @@ async function launchPuppeteer(url, options) {
                 '--disable-dev-shm-usage'
             ]
         });
+        const page = await browser.newPage();
 
-        // Run authentication script (as injected javascript)
-        if (options.auth_script) {
-            const page = await browser.newPage();
-            await page.goto(url, {
-                waitUntil: 'networkidle0',
-            });
-            await page.waitForSelector(options.await_selector, {visible: true});
-            await page.evaluate(options.auth_script);
-            await page.waitForNavigation();
+        if (options.auth_header) {
+            page.setExtraHTTPHeaders({
+                'Authorization': options.auth_header,
+            })
         }
 
+        if (options.cookie_name && options.cookie_value) {
+            page.setCookie({ name: options.cookie_name, value: options.cookie_value });
+        }
+
+        await page.waitForNavigation();
         // Lighthouse will open URL. Puppeteer observes `targetchanged` and sets up network conditions.
         // Possible race condition.
         let opts = {

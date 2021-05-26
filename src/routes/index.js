@@ -209,8 +209,12 @@ router.post('/receive_submission', async function(req, res) {
         user_id: res_data.user.id,
         username: res_data.user.username,
         channel,
+        auth_header: undefined,
+        cookie_name: undefined,
+        cookie_value: undefined,
     };
 
+    console.log(JSON.stringify(values));
     for (const key in values) {
         if (values[key].audit_options && values[key].audit_options.selected_options && values[key].audit_options.selected_options.length > 0) {
             values[key].audit_options.selected_options.forEach(option => {
@@ -218,19 +222,14 @@ router.post('/receive_submission', async function(req, res) {
             });
         }
 
-        if (values[key].audit_url) {
-            submission.audit_url = values[key].audit_url.value;
-        }
-
-        if (values[key].schedule) {
-            submission.schedule = values[key].schedule.value;
+        for (const optionKey of Object.keys(values[key])) {
+            submission[optionKey] = values[key][optionKey].value;
         }
     }
 
     try {
         // Ad-hoc run
         if (!is_schedule) {
-            
             const options = {
                 throttling: submission.throttling,
                 performance: submission.performance,
@@ -238,6 +237,9 @@ router.post('/receive_submission', async function(req, res) {
                 'best-practices': submission['best-practices'],
                 pwa: submission.pwa,
                 seo: submission.seo,
+                auth_header: submission.auth_header,
+                cookie_name: submission.cookie_name,
+                cookie_value: submission.cookie_value,
             };
             res.send();
             await runAudit(submission.audit_url, submission.user_id, submission.channel, options);
@@ -255,6 +257,9 @@ router.post('/receive_submission', async function(req, res) {
                 'best-practices': schedule['best-practices'],
                 pwa: schedule.pwa,
                 seo: schedule.seo,
+                auth_header: schedule.auth_header,
+                cookie_name: schedule.cookie_name,
+                cookie_value: schedule.cookie_value,
             };
             await runAudit(schedule.audit_url, schedule.user_id, schedule.channel, options);
         });

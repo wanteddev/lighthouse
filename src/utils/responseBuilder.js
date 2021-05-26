@@ -123,6 +123,57 @@ function generateAuditDialog(is_schedule) {
         blocks.push(schedule);
     }
 
+    const auth_header = {
+        type: 'input',
+        element: {
+            type: 'plain_text_input',
+            action_id: 'auth_header',
+            placeholder: {
+                type: 'plain_text',
+                text: 'JWT ofma3103dSFNsUJasn311ndSN'
+            }
+        },
+        label: {
+            type: 'plain_text',
+            text: 'Authorization Header (optional)'
+        }
+    };
+    blocks.push(auth_header);
+
+    const cookie_name = {
+        type: 'input',
+        element: {
+            type: 'plain_text_input',
+            action_id: 'cookie_name',
+            placeholder: {
+                type: 'plain_text',
+                text: 'jwt_token'
+            }
+        },
+        label: {
+            type: 'plain_text',
+            text: 'Cookie Name (optional)'
+        }
+    };
+    blocks.push(cookie_name);
+
+    const cookie_value = {
+        type: 'input',
+        element: {
+            type: 'plain_text_input',
+            action_id: 'cookie_value',
+            placeholder: {
+                type: 'plain_text',
+                text: 'jwt_token'
+            }
+        },
+        label: {
+            type: 'plain_text',
+            text: 'Cookie Value (optional)'
+        }
+    };
+    blocks.push(cookie_value);
+
     // Option dropdowns
     const options = {
         type: 'input',
