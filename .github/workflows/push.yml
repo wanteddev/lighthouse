@@ -31,3 +31,4 @@ jobs:
         run: |
           docker tag ghcr.io/wanteddev/lighthouse:${{github.event.release.tag_name}} ghcr.io/wanteddev/lighthouse:latest
           docker push ghcr.io/wanteddev/lighthouse:latest
+        if: "github.event.release.prerelease != true"

@@ -16,6 +16,9 @@ const schema = new mongoose.Schema({
     seo: Boolean,
     pwa: Boolean,
     throttling: Boolean,
+    auth_header: String,
+    cookie_name: String,
+    cookie_value: String,
 });
 
 const ScheduleModel = mongoose.model('Schedule', schema);
@@ -34,6 +37,9 @@ async function createSchedule(payload) {
         seo: payload.seo,
         pwa: payload.pwa,
         throttling: payload.throttling,
+        auth_header: payload.auth_header,
+        cookie_name: payload.cookie_name,
+        cookie_value: payload.cookie_value,
     });
 
     const data = await new_schedule.save();
