@@ -136,7 +136,7 @@ function generateAuditDialog(is_schedule) {
         },
         label: {
             type: 'plain_text',
-            text: 'Authorization Header (optional)'
+            text: 'Authorization Header'
         }
     };
     blocks.push(auth_header);
@@ -154,7 +154,7 @@ function generateAuditDialog(is_schedule) {
         },
         label: {
             type: 'plain_text',
-            text: 'Cookie Name (optional)'
+            text: 'Cookie Name'
         }
     };
     blocks.push(cookie_name);
@@ -172,7 +172,7 @@ function generateAuditDialog(is_schedule) {
         },
         label: {
             type: 'plain_text',
-            text: 'Cookie Value (optional)'
+            text: 'Cookie Value'
         }
     };
     blocks.push(cookie_value);
