@@ -30,16 +30,19 @@ async function launchPuppeteer(url, options) {
         const page = await browser.newPage();
 
         if (options.auth_header) {
-            page.setExtraHTTPHeaders({
+            await page.setExtraHTTPHeaders({
                 'Authorization': options.auth_header,
             })
         }
 
         if (options.cookie_name && options.cookie_value) {
-            page.setCookie({ name: options.cookie_name, value: options.cookie_value, url });
+            await page.setCookie({ name: options.cookie_name, value: options.cookie_value, url });
         }
-
-        await page.waitForNavigation();
+        await page.goto(url, {
+            waitUntil: 'networkidle0',
+        });
+        await page.waitForSelector('body', {visible: true});
+        await page.close();
         // Lighthouse will open URL. Puppeteer observes `targetchanged` and sets up network conditions.
         // Possible race condition.
         let opts = {
@@ -84,7 +87,6 @@ async function launchPuppeteer(url, options) {
         const {lhr} = await lighthouse(url, opts);
         // Return response back to main thread
         parentPort.postMessage(lhr);
-
         await browser.close();
         return;
     } catch(error) {
