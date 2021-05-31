@@ -149,7 +149,7 @@ function generateAuditDialog(is_schedule) {
             action_id: 'cookie_name',
             placeholder: {
                 type: 'plain_text',
-                text: 'jwt_token'
+                text: 'jwt'
             }
         },
         label: {
@@ -167,7 +167,7 @@ function generateAuditDialog(is_schedule) {
             action_id: 'cookie_value',
             placeholder: {
                 type: 'plain_text',
-                text: 'jwt_token'
+                text: 'ofma3103dSFNsUJasn311ndSN...'
             }
         },
         label: {
