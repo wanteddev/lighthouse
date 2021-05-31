@@ -125,6 +125,7 @@ function generateAuditDialog(is_schedule) {
 
     const auth_header = {
         type: 'input',
+        optional: true,
         element: {
             type: 'plain_text_input',
             action_id: 'auth_header',
@@ -142,6 +143,7 @@ function generateAuditDialog(is_schedule) {
 
     const cookie_name = {
         type: 'input',
+        optional: true,
         element: {
             type: 'plain_text_input',
             action_id: 'cookie_name',
@@ -159,6 +161,7 @@ function generateAuditDialog(is_schedule) {
 
     const cookie_value = {
         type: 'input',
+        optional: true,
         element: {
             type: 'plain_text_input',
             action_id: 'cookie_value',

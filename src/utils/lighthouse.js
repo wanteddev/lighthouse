@@ -36,7 +36,7 @@ async function launchPuppeteer(url, options) {
         }
 
         if (options.cookie_name && options.cookie_value) {
-            page.setCookie({ name: options.cookie_name, value: options.cookie_value });
+            page.setCookie({ name: options.cookie_name, value: options.cookie_value, url });
         }
 
         await page.waitForNavigation();

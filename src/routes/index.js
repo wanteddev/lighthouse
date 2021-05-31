@@ -220,10 +220,10 @@ router.post('/receive_submission', async function(req, res) {
             values[key].audit_options.selected_options.forEach(option => {
                 submission[option.value] = true;
             });
-        }
-
-        for (const optionKey of Object.keys(values[key])) {
-            submission[optionKey] = values[key][optionKey].value;
+        } else {
+            for (const optionKey of Object.keys(values[key])) {
+                submission[optionKey] = values[key][optionKey].value;
+            }
         }
     }
 
