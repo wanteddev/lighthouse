@@ -37,6 +37,9 @@ async function launchPuppeteer(url, options) {
 
         if (options.cookie_name && options.cookie_value) {
             await page.setCookie({ name: options.cookie_name, value: options.cookie_value, url });
+            await page.evaluate(() => {
+                localStorage.setItem(options.cookie_name, options.cookie_value);
+            });
         }
         await page.goto(url, {
             waitUntil: 'networkidle0',
