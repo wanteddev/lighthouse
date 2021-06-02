@@ -37,12 +37,12 @@ async function launchPuppeteer(url, options) {
 
         if (options.cookie_name && options.cookie_value) {
             await page.setCookie({ name: options.cookie_name, value: options.cookie_value, url });
-            await page.evaluate(() => {
+            await page.evaluateOnNewDocument(() => {
                 localStorage.setItem(options.cookie_name, options.cookie_value);
             });
         }
         await page.goto(url, {
-            waitUntil: 'networkidle0',
+            waitUntil: 'load',
         });
         await page.waitForSelector('body', {visible: true});
         await page.close();
