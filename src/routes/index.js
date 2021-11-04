@@ -63,7 +63,7 @@ router.post('/lighthouse', async function(req, res) {
             }
 
             res.send({
-                text: `<${CHATBOT_SERVER}/view_stats?url=${url}|Click here> to view all auditing statistics for ${url}`
+                text: `<${CHATBOT_SERVER}/view_stats?url=${url}&number=30|Click here> to view all auditing statistics for ${url}`
             });
             break;
         case 'jobs':
